@@ -1,0 +1,61 @@
+body {
+    display: flex;
+    justify-content: center; /* Horizontal alignment */
+    align-items: center;     /* Vertical alignment */
+    height: 100vh;           /* Required to center vertically in viewport */
+}
+
+.display {
+    grid-column: 1 / -1; /* Spans across all 3 columns */
+    text-align: center;
+    height: 50px;
+}
+
+
+.button-grid {
+    max-width: 400px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.top-buttons {
+    display: grid; /* Enables grid layout */
+    grid-template-columns: repeat(6, 1fr); /* Creates 6 equal columns */
+    gap: 10px; /* Space between buttons */
+}
+
+.top-buttons button {
+  padding: 15px;
+  cursor: pointer; /* Changes cursor on hover */
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.bot-buttons {
+    display: grid; /* Enables grid layout */
+    grid-template-columns: repeat(5, 1fr); /* Creates 5 equal columns */
+    gap: 10px; /* Space between buttons */
+}
+
+.bot-buttons button {
+  padding: 15px;
+  cursor: pointer; /* Changes cursor on hover */
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.c-button {
+    background-color: blue !important;
+}
+
+.shift-text {
+    color: yellow;
+}
+
+.normal-text {
+    color: white;
+}

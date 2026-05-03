@@ -1,0 +1,178 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+    
+<body>
+    <div class="calculator">
+        <div class="indicators">
+            <span id="shift-indicator">shift = false</span>
+            <span id="mode-indicator">mode = false</span>
+            <span id="angle-indicator">angle = deg</span>
+        </div>
+        <div class="button-grid top-buttons">
+            <input type="text" id="display" class="display" disabled>
+            <button class="shift-button" onmousedown="shiftToggle()">
+                <span class="shift-text">shift</span>
+                <span class="normal-text"></span>
+            </button>      
+            <button class="op-button" onmousedown="modeToggle()">
+                <span class="shift-text"></span>
+                <span class="normal-text">mode</span>
+            </button>  
+            <button class="op-button" onmousedown="square()">
+                <span class="shift-text">sqrt</span>
+                <span class="normal-text">x^2</span>
+            </button>  
+            <button class="op-button" onmousedown="log10()">
+                <span class="shift-text">10^x</span>
+                <span class="normal-text">log</span>
+            </button>  
+            <button class="op-button" onmousedown="ln()">
+                <span class="shift-text">e^x</span>
+                <span class="normal-text">ln</span>
+            </button>  
+            <button class="op-button" onmousedown="on()">
+                <span class="shift-text"></span>
+                <span class="normal-text">on</span>
+            </button>  
+
+            <button class="op-button" onmousedown="abc()">
+                <span class="shift-text">d/c</span>
+                <span class="normal-text">ab/c</span>
+            </button>      
+            <button class="op-button" onmousedown="deg()">
+                <span class="shift-text"></span>
+                <span class="normal-text">deg, ', ''</span>
+            </button>  
+            <button class="op-button" onmousedown="hyp()">
+                <span class="shift-text"></span>
+                <span class="normal-text">hyp</span>
+            </button>  
+            <button class="op-button" onmousedown="sin()">
+                <span class="shift-text">sin^-1</span>
+                <span class="normal-text">sin</span>
+            </button>  
+            <button class="op-button" onmousedown="cos()">
+                <span class="shift-text">cos^-1</span>
+                <span class="normal-text">cos</span>
+            </button>  
+            <button class="op-button" onmousedown="tan()">
+                <span class="shift-text">tan^-1</span>
+                <span class="normal-text">tan</span>
+            </button>  
+
+            <button class="op-button" onmousedown="pm()">
+                <span class="shift-text">3sqrt</span>
+                <span class="normal-text">+/-</span>
+            </button>      
+            <button class="op-button" onmousedown="trian()">
+                <span class="shift-text">x^3</span>
+                <span class="normal-text">trian</span>
+            </button>   
+            <button class="op-button" onmousedown="leftPar()">
+                <span class="shift-text">XtoY</span>
+                <span class="normal-text">[(---</span>
+            </button>  
+            <button class="op-button" onmousedown="rightPar()">
+                <span class="shift-text">1/x</span>
+                <span class="normal-text">---)]</span>
+            </button>  
+            <button class="op-button" onmousedown="xPowY()">
+                <span class="shift-text">x^1/y</span>
+                <span class="normal-text">x^y</span>
+            </button>  
+            <button class="op-button" onmousedown="mr()">
+                <span class="shift-text">min</span>
+                <span class="normal-text">mr</span>
+            </button> 
+        </div>
+        <div class="button-grid bot-buttons">
+            <button class="num-button" onmousedown="number('7')">
+                <span class="shift-text"></span>
+                <span class="normal-text">7</span>
+            </button> 
+            <button class="num-button" onmousedown="number('8')">
+                <span class="shift-text"></span>
+                <span class="normal-text">8</span>
+            </button> 
+            <button class="num-button" onmousedown="number('9')">
+                <span class="shift-text"></span>
+                <span class="normal-text">9</span>
+            </button> 
+            <button class="c-button" onmousedown="currentClear()">
+                <span class="shift-text"></span>
+                <span class="normal-text">C</span>
+            </button> 
+            <button class="c-button" onmousedown="allClear()">
+                <span class="shift-text"></span>
+                <span class="normal-text">AC</span>
+            </button> 
+
+            <button class="num-button" onmousedown="number('4'); modeAct('4');">
+                <span class="shift-text"></span>
+                <span class="normal-text">4</span>
+            </button> 
+            <button class="num-button" onmousedown="number('5'); modeAct('5');">
+                <span class="shift-text"></span>
+                <span class="normal-text">5</span>
+            </button> 
+            <button class="num-button" onmousedown="number('6'); modeAct('6');">
+                <span class="shift-text"></span>
+                <span class="normal-text">6</span>
+            </button> 
+            <button class="op-button" onmousedown="operation('*')">
+                <span class="shift-text"></span>
+                <span class="normal-text">X</span>
+            </button> 
+            <button class="op-button" onmousedown="operation('/')">
+                <span class="shift-text"></span>
+                <span class="normal-text">/</span>
+            </button> 
+
+            <button class="num-button" onmousedown="number('1')">
+                <span class="shift-text"></span>
+                <span class="normal-text">1</span>
+            </button> 
+            <button class="num-button" onmousedown="number('2')">
+                <span class="shift-text"></span>
+                <span class="normal-text">2</span>
+            </button> 
+            <button class="num-button" onmousedown="number('3')">
+                <span class="shift-text"></span>
+                <span class="normal-text">3</span>
+            </button> 
+            <button class="op-button" onmousedown="operation('+')">
+                <span class="shift-text"></span>
+                <span class="normal-text">+</span>
+            </button> 
+            <button class="op-button" onmousedown="operation('-')">
+                <span class="shift-text"></span>
+                <span class="normal-text">-</span>
+            </button> 
+
+            <button class="num-button" onmousedown="number('0')">
+                <span class="shift-text"></span>
+                <span class="normal-text">0</span>
+            </button> 
+            <button class="num-button" onmousedown="number('.')">
+                <span class="shift-text"></span>
+                <span class="normal-text">.</span>
+            </button> 
+            <button class="op-button" onmousedown="exp()">
+                <span class="shift-text">pi</span>
+                <span class="normal-text">exp</span>
+            </button> 
+            <button class="op-button" onmousedown="equals()">
+                <span class="shift-text">%</span>
+                <span class="normal-text">=</span>
+            </button> 
+            <button class="op-button" onmousedown="mPlus()">
+                <span class="shift-text">M-</span>
+                <span class="normal-text">M+</span>
+            </button> 
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
