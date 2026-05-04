@@ -3,6 +3,11 @@ body {
     justify-content: center; /* Horizontal alignment */
     align-items: center;     /* Vertical alignment */
     height: 100vh;           /* Required to center vertically in viewport */
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1 {
+    flex-direction: column;
 }
 
 .display {

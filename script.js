@@ -35,7 +35,7 @@ const buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
     if (button.className != "shift-button") {
         button.addEventListener('mouseup', (event) => {
-            console.log("Mouse released on:", event.target);
+            //console.log("Mouse released on:", event.target);
             console.log(`${expression}, ${val}`);
             shiftFalse();
         });
@@ -214,7 +214,6 @@ function tan() {
 
 // Switch sign of val, or 1/3 root
 function pm() {
-    console.log("val length = " + val.length);
     if (shift) {
         // 1/3rd power
         val = String(Math.pow(Number(val), 1/3));       
@@ -331,6 +330,16 @@ function rightPar() {
         display.value = val;
     }
     else {
-        // Eval whole expression until left par is reached
+        // Eval whole expression until left par is reached, search from right to left
+        for (let i = expression.length - 1; i >= 0; i--) {
+            if (expression.charAt(i) == '(') {
+                expression += val; // Add current number to expression
+                restExp = expression.substring(0, i); // Expression before last left par
+                evalExp = expression.substring(i+1); // Expression inside pars, to evaluate
+                expression = restExp;
+                val = eval(evalExp); // TODO: Fix undefined error from empty pars
+                display.value = val;
+            }
+        }
     }
 }
