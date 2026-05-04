@@ -10,6 +10,11 @@ h1 {
     flex-direction: column;
 }
 
+.god {
+    width: 400px;
+    padding: 100px;
+    justify-content: space-between;
+}
 .display {
     grid-column: 1 / -1; /* Spans across all 3 columns */
     text-align: center;
