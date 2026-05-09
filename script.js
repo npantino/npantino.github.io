@@ -2,12 +2,14 @@ display = document.getElementById("display"); // Get input element showing on ca
 shiftDisplay = document.getElementById("shift-indicator");
 modeDisplay = document.getElementById("mode-indicator");
 angleDisplay = document.getElementById("angle-indicator");
+hypDisplay = document.getElementById("hyp-indicator");
 val = ""; // Current entry
 expression = ""; // Expression to be evaluated
 shift = false; // Holds shift value
 angle = "deg"; // Holds angle mode
 mode = false; // Holds mode value
 exp_inv = false; // True when x^1/y button is pressed, false once equals is pressed
+hyp = false; // False when using regular trig functions, true for hyperbolic functions (sinh, cosh, ...)
 
 function number(num) {
     // Don't insert a number when changing angle mode
@@ -19,12 +21,32 @@ function number(num) {
 
 function shiftToggle() {
     shift = !shift;
-    shiftDisplay.textContent = "shift = " + shift;
+    if (shift) {
+        shiftDisplay.textContent = "shift";
+    }
+    else {
+        shiftDisplay.textContent = "";
+    }  
 }
 
 function shiftFalse() {
     shift = false;
-    shiftDisplay.textContent = "shift = " + shift;
+    shiftDisplay.textContent = "";
+}
+
+function hypToggle() {
+    hyp = !hyp;
+    if (hyp) {
+        hypDisplay.textContent = "hyp";
+    }
+    else {
+        hypDisplay.textContent = "";
+    }  
+}
+
+function hypFalse() {
+    hyp = false;
+    hypDisplay.textContent = "";
 }
 
 // Called once button released other than shift, to set shift to false and display expression and val.
@@ -42,7 +64,13 @@ buttons.forEach(button => {
 // Mode button for changing angle
 function modeToggle() {
     mode = !mode;
-    modeDisplay.textContent = "mode = " + mode;
+    if (mode) {
+        modeDisplay.textContent = "mode";
+    }
+    else {
+        modeDisplay.textContent = "";
+    }
+    
 }
 
 function modeAct(num) {
@@ -60,7 +88,7 @@ function modeAct(num) {
         }
         modeToggle(); // Back to false
     }
-    angleDisplay.textContent = "angle = " + angle;
+    angleDisplay.textContent = angle;
 }
 
 function operation(op) {
@@ -119,7 +147,12 @@ function sin() {
     // Math defaults in radians, need to convert
     if (shift) {
         res = Math.asin(Number(val)); // Currently in radians
-        if (angle == "deg") {
+        // Regular or hyperbolic
+        if (hyp) {
+            ans = Math.asinh(Number(val));
+        }
+        // Regular, account for angle type
+        else if (angle == "deg") {
             ans = String(radToDeg(res));
         }
         else if (angle == "rad") {
@@ -131,7 +164,10 @@ function sin() {
     }
     // sin
     else {
-        if (angle == "deg") {
+        if (hyp) {
+            ans = String(Math.sinh(Number(val)));
+        }
+        else if (angle == "deg") {
             ans = String(Math.sin(degToRad(Number(val))));
         }
         else if (angle == "rad") {
@@ -151,7 +187,10 @@ function cos() {
     // Math defaults in radians, need to convert
     if (shift) {
         res = Math.acos(Number(val)); // Currently in radians
-        if (angle == "deg") {
+        if (hyp) {
+            ans = Math.acosh(Number(val));
+        }
+        else if (angle == "deg") {
             ans = String(radToDeg(res));
         }
         else if (angle == "rad") {
@@ -163,7 +202,10 @@ function cos() {
     }
     // cos
     else {
-        if (angle == "deg") {
+        if (hyp) {
+            ans = Math.cosh(Number(val));
+        }
+        else if (angle == "deg") {
             ans = String(Math.cos(degToRad(Number(val))));
         }
         else if (angle == "rad") {
@@ -183,7 +225,10 @@ function tan() {
     // Math defaults in radians, need to convert
     if (shift) {
         res = Math.atan(Number(val)); // Currently in radians
-        if (angle == "deg") {
+        if (hyp) {
+            ans = Math.atanh(Number(val));
+        }
+        else if (angle == "deg") {
             ans = String(radToDeg(res));
         }
         else if (angle == "rad") {
@@ -195,7 +240,10 @@ function tan() {
     }
     // tan
     else {
-        if (angle == "deg") {
+        if (hyp) {
+            ans = Math.tanh(Number(val));
+        }
+        else if (angle == "deg") {
             ans = String(Math.tan(degToRad(Number(val))));
         }
         else if (angle == "rad") {
@@ -306,10 +354,15 @@ function xPowY() {
     display.value = "";
 }
 
+// Normal, backspace. Shift, 3rd power.
 function trian() {
     ans = "";
     if (shift) {
         ans = String(Math.pow(Number(val), 3));  // 3rd power
+    }
+    // Prevent indexing error by not backspacing an empty string
+    else if (val.length > 0) {
+        ans = val.substring(0, val.length - 1); // Backspace
     }
     display.value = ans;
     val = ans;
