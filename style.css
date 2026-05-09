@@ -15,9 +15,13 @@ h1 {
     padding: 50px;
     margin-top: auto;
 }
+
 .display {
     grid-column: 1 / -1; /* Spans across all 3 columns */
     text-align: center;
+    font-size: 25px;
+    color: black;
+    background-color:rgb(170, 213, 217);
     height: 50px;
 }
 
@@ -35,6 +39,7 @@ h1 {
 }
 
 .top-buttons button {
+  font-family: 'Courier New', monospace;
   padding: 15px;
   cursor: pointer; /* Changes cursor on hover */
   background-color: #000000;
@@ -50,6 +55,7 @@ h1 {
 }
 
 .bot-buttons button {
+  font-family: 'Courier New', monospace;
   padding: 15px;
   cursor: pointer; /* Changes cursor on hover */
   background-color: #000000;
