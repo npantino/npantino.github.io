@@ -7,10 +7,7 @@ expression = ""; // Expression to be evaluated
 shift = false; // Holds shift value
 angle = "deg"; // Holds angle mode
 mode = false; // Holds mode value
-
-// TODO: add more operations
-
-
+exp_inv = false; // True when x^1/y button is pressed, false once equals is pressed
 
 function number(num) {
     // Don't insert a number when changing angle mode
@@ -235,6 +232,10 @@ function pm() {
 // Evaluate the stored expression
 function equals() {
     expression += val;
+    if (exp_inv) {
+        exp_inv = false;
+        expression += "))"; // Close the parentheses
+    }    
     ans = eval(expression);
     display.value = String(ans);
     val = String(ans);
@@ -298,11 +299,10 @@ function ln() {
 function xPowY() {
     expression += val + "**";
     if (shift) {
-        val = "" // TODO: Fix with above solution
+        exp_inv = true;
+        expression += "(1/(";
     }
-    else {
-        val = "";
-    }
+    val = "";
     display.value = "";
 }
 
@@ -332,7 +332,8 @@ function rightPar() {
     else {
         // Eval whole expression until left par is reached, search from right to left
         for (let i = expression.length - 1; i >= 0; i--) {
-            if (expression.charAt(i) == '(') {
+            // Disable rightPar when x^1/y is active since the op adds two left pars to expression
+            if (expression.charAt(i) == '(' && !exp_inv) {
                 expression += val; // Add current number to expression
                 restExp = expression.substring(0, i); // Expression before last left par
                 evalExp = expression.substring(i+1); // Expression inside pars, to evaluate
