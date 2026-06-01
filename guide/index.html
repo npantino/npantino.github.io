@@ -1,0 +1,65 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <!-- Load MathJax from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<title>Simulator Guide</title>
+<body>
+    <a href="/" class="button-link">Back to calculator</a>
+    <h1>Introduction</h1>
+    This simulator was created by myself: Nicholas Pantino. I am a 2nd-year EE major at UC Davis, 
+    and made this while taking PHY 9D after it was required during midterms to use these calculators.<br>
+    Below are some tips on using the least amount of button presses while still calculating the right answer. <br>
+    I have also included examples of common calculations for PHY 9D. <br>
+    <strong>NOTE:</strong> You should be comfortable with doing problems in whatever PHY 9 series you are in before min maxing calculator inputs.<br>
+    It's no use saving seconds on button presses when you don't know what formula to use. <br>
+    <h1>Some tips</h1>
+    <ul>
+        <li>Operators marked in yellow, such as \( 10^x \) or \( sin^{-1} \) must have shift enabled before using them.</li>
+        <li>If a calculation seems too big and is prone to error, split it into chunks, writing down portions to 5 significant figures. <br>
+        Once different portions are taken care off, calculate the final result.</li>
+        <li>The operators above the number pad without a y operates on the currently displayed number when pressed. <br>
+            For instance, 6 ... \( x^2 \) results in 36, not \( 6^2 \). <br>
+            60 ... cos results in 0.5.</li>
+        <li>The operators with a y require a second input before hitting the equals sign.<br>
+            For instance, 2 ... \( x^y \) ... 10 ... = results in 1024. </li>
+        <li>All operators still follow order of operations (PEMDAS) when you input them.<br>
+            3 ... + ... 4 ... X ... 5 ... = results in 23.
+        </li>
+        <li>6 ... ( something ) is not allowed, you must use a multiply sign. The correct way is 6 ... X ... ( something ).</li>
+        <li>When computing a fraction, if it is large, calculate the denominator first before using the \( \frac{1}{x} \) operation, 
+            then <br> multiply and compute the numerator. Use parentheses if you want to be extra safe.
+        </li>
+        <li>To use degrees, hit MODE ... 4. To use radians, hit MODE ... 5.</li>
+        <li>The hyp operator changes trigonometric functions into hyperbolic functions. So sin becomes sinh, cos becomes cosh, etc. <br>
+            This is only relevant for calculating transmission coefficients for quantum tunneling in PHY 9D. <br>
+            It stays on or off when pressing other buttons.
+        </li>
+        <li>The EXP operator allows one to type in values multiplied by exponents with base 10 quickly. <br>
+        Just type the significand ... EXP ... exponent. For negative exponents, type the magnitude then use the \( \pm \) operator. <br>
+        Surround them with parentheses to be extra safe.</li>
+        <li> The trian operator appears as a triangle on the real calculator, and is a backspace. It deletes the rightmost number.</li>
+
+    </ul>
+    <h1>Examples</h1>
+    <strong>Gamma calculation:</strong> : \( \gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}, \ v = 0.6c, c = 3 \times 10^8 \ m/s \).<br>
+    1 ... - ... 0.6 ... \( x^2 \) ... = ... sqrt ... \( \frac{1}{x} \) to get 1.25. <br> <br>
+    <strong>Relativistic Doppler Shift (blueshift)</strong> : \( f' = \sqrt{\frac{1 + v/c}{1 - v/c}} f, \ v = 0.8c, \ f = 180 THz \). <br>
+    1 ... + ... 0.8 ... = ... / ... ( ... 1 ... - ... 0.8 ... ) ... = ... sqrt ... X ... 180 ... = to get 540 THz. <br> <br>
+    <strong>Total relativistic energy:</strong> \( E = \sqrt{p^2 c^2 + m^2 c^4} , \ m = 6.0  \times 10^{-6} \ kg, \ p = 2.4 \times 10^3 \ kg \cdot m/s\). <br>
+    ( .. 2.4 .. EXP .. 3 .. ) .. \( x^2 \) .. X .. ( .. 3 .. EXP .. 8 .. ) .. \( x^2 \) .. + .. ( .. 6 .. EXP .. 6 .. \( \pm \) .. ) .. 
+    \( x^2 \) .. X .. ( .. 3 .. EXP .. 8 .. ) .. \( x^y \) .. 4 .. = .. sqrt to get \( 9 \times 10^{11} J.\) <br> <br>
+    <strong>Compton scattering:</strong>  \( \lambda_{out} = \lambda_{in} + \frac{h}{mc} (1 - cos(\theta)), \) <br>
+    where \( \lambda_{in} = 4.456 \times 10^{-11} m, \ h = 6.63 \times 10^{-34} \ J \cdot s, \ m = 9.11 \times 10^{-31} \ kg, \ \theta = 90^\circ \). <br>
+    Calculate \( \frac{h}{mc} \) first: ( .. 9.11 .. EXP .. 31 .. \( \pm \) .. ) .. X .. ( .. 3 .. EXP .. 8 .. ) ..  = 
+    .. \( \frac{1}{x} \) .. X .. 6.63 .. EXP .. 34 .. \( \pm \) .. = to get \( 2.426 \times 10^{-12} \ m.\) <br>
+    Now calculate \( \lambda_{out} \): ( ... 4.456 .. EXP .. 11 .. \( \pm \) .. ) .. + .. ( .. 2.426 .. EXP .. 12 .. 
+    \( \pm \) .. ) .. X .. ( .. 1 .. - .. 90 .. cos .. ) = to get \( 4.699 \times 10^{-11} \ m.\) <br> <br>
+    <strong>Matter waves:</strong> \( k = \frac{\sqrt{2mE}}{\hbar} \), <br>
+    where \( m = 9.11 \times 10^{-31} \ kg, \ E = 1.974 \ eV = 1.974 \times 1.60 \times 10^{-19} \ J, \ \hbar = 1.05 \times 10^{-34} \ J \cdot s. \) <br>
+    2 .. X .. ( .. 9.11 .. EXP .. 31 .. \( \pm \) .. ) .. X .. 1.974 .. X .. ( .. 1.6 .. EXP .. 19 .. \( \pm \) .. ) .. 
+    = .. sqrt .. / .. ( .. 1.05 .. EXP .. 34 .. \( \pm \) .. ) .. = to get \( 7.225 \times 10^9 \ rad/m. \)
+
+</body>
+</html>

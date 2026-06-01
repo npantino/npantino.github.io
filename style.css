@@ -16,6 +16,26 @@ h1 {
     margin-top: auto;
 }
 
+.redirect {
+    margin-top: auto;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.button-link:hover {
+  background-color: #0056b3;
+}
+
 .display {
     grid-column: 1 / -1; /* Spans across all 3 columns */
     text-align: center;
