@@ -11,6 +11,35 @@ mode = false; // Holds mode value
 exp_inv = false; // True when x^1/y button is pressed, false once equals is pressed
 hyp = false; // False when using regular trig functions, true for hyperbolic functions (sinh, cosh, ...)
 
+// Cheeto pet detector
+pet = false;
+cat = document.getElementById("cheeto");
+cat.addEventListener('mousemove', (event) => {
+    // Get coordinates relative to the top-left corner of the div
+    x = event.offsetX;
+    y = event.offsetY;
+    // Output coords
+    //coords = `X: ${x}, Y: ${y}`;
+    //console.log(coords);
+    // Check if cursor is in Cheeto image
+    if (x >= 50 && x <= 250 && y >= 50 && y <= 270 && !pet) {
+        //console.log("cat noises");
+        pet = true;
+    }   
+    // top left, (50, 50). bot right, (250, 270)
+});
+
+// Check if Cheeto has been pet every 2 seconds
+setInterval(() => {
+    if (pet) {
+        // Create the audio instance with your file path
+        const audio = new Audio('cat_noises.mp3');       
+        // Play the audio file
+        audio.play(); 
+        pet = false; // Reset pet state
+    }
+}, 2000);
+
 function number(num) {
     // Don't insert a number when changing angle mode
     if (!mode) {

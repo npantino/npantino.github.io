@@ -10,7 +10,12 @@ h1 {
     flex-direction: column;
 }
 
-.god {
+#cheeto {
+    padding: 50px;
+    margin-top: auto;
+}
+
+#god {
     width: 200px;
     padding: 50px;
     margin-top: auto;
