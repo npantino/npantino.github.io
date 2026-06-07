@@ -313,7 +313,8 @@ function equals() {
         exp_inv = false;
         expression += "))"; // Close the parentheses
     }    
-    ans = eval(expression);
+    const clean = expression.replace(/--/g, "+"); // Replace double negatives with addition
+    ans = eval(clean);
     display.value = String(ans);
     val = String(ans);
     expression = ""; // Reset expression to nothing
